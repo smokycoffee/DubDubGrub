@@ -14,7 +14,6 @@ struct LocationDetailView: View {
                    GridItem(.flexible())]
     
     var body: some View {
-        NavigationStack {
             VStack(spacing: 16) {
                 Image("default-banner-asset")
                     .resizable()
@@ -32,6 +31,7 @@ struct LocationDetailView: View {
                 Text("This is a test description This is a test description This is a test description This is a test description This is a test description This is a test description ")
                     .lineLimit(3)
                     .minimumScaleFactor(0.75)
+                    .frame(height: 70)
                     .padding(.horizontal)
                 
                 ZStack {
@@ -72,23 +72,26 @@ struct LocationDetailView: View {
                     .bold()
                     .font(.title2)
                 
-                LazyVGrid(columns: columns) {
-                    FirstNameAvatarView(firstName: "David")
-                    FirstNameAvatarView(firstName: "sd")
-                    FirstNameAvatarView(firstName: "asd")
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        FirstNameAvatarView(firstName: "David")
+                        FirstNameAvatarView(firstName: "sd")
+                        FirstNameAvatarView(firstName: "asd")
+                    }
                 }
                 
                 Spacer()
             }
-            .navigationTitle("Location Name")
+            .navigationTitle("location name")
             .navigationBarTitleDisplayMode(.inline)
-        }
     }
 }
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationDetailView()
+        NavigationStack {
+            LocationDetailView()
+        }
     }
 }
 
